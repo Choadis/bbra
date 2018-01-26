@@ -9,7 +9,7 @@ Cuba.use Rack::Session::Cookie, :secret => ENV["SESSION_SECRET"] || "__a_very_lo
 Cuba.plugin Cuba::Safe
 Cuba.plugin Cuba::Render
 
-db = SQLite3::Database.new "./db/dev.db"
+db = SQLite3::Database.new "dev.db"
 
 students = db.execute("SELECT * FROM students").map do |name, email, discord|
   { :name => name, :email => email, :discord => discord }
