@@ -11,4 +11,4 @@ app = Proc.new do |env|
   ]
 end
 
-Rack::Handler.default.run app, :Port => 5678
+Rack::Handler.default.run app, :Port => ENV['PORT'] || 5678
