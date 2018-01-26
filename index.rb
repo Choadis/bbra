@@ -1,14 +1,17 @@
-require 'rack'
+require "cuba"
+require "cuba/render"
+require "erb"
 
-app = Proc.new do |env|
-  [
-    '200',
-    {'Content-Type' => 'text/html'},
-    ["
-      <h1>Hello world!</h1>
-      <p>The time is #{Time.now}</p>
-    "]
-  ]
+Cuba.plugin Cuba::Render
+Cuba.define do
+  on "about" do
+    res.write view("about")
+  end
+  on root do
+    res.write view("index")
+  end
+  def not_found
+    super
+    res.write view("404")
+  end
 end
-
-Rack::Handler.default.run app, :Port => ENV['PORT'] || 5678
