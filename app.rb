@@ -4,7 +4,7 @@ require "cuba/render"
 require "erb"
 require "sqlite3"
 
-Cuba.use Rack::Session::Cookie, :secret => ENV["SESSION_SECRET"] || "__a_very_long_string__"
+Cuba.use Rack::Session::Cookie, :secret => ENV["SESSION_SECRET"] || "5678"
 
 Cuba.plugin Cuba::Safe
 Cuba.plugin Cuba::Render
