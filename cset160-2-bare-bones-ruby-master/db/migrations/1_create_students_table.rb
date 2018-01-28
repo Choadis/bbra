@@ -3,20 +3,20 @@ require "sqlite3"
 db = SQLite3::Database.new "./db/dev.db"
 
 db.execute "
-  create table games (
+  create table students (
     id INTEGER PRIMARY KEY ASC,
     name VARCHAR(255),
-    producer VARCHAR(255),
-    platform VARCHAR(255)
+    email VARCHAR(255),
+    discord VARCHAR(255)
   );
 "
 
-games = [
+students = [
   ["Chad Ostrowski", "ostrowski@stevens.edu", "ProfessorO"],
 ]
 
-games.each do |game|
+students.each do |student|
   db.execute(
-    "INSERT INTO games (name, producer, platform) VALUES (?, ?, ?)", game
+    "INSERT INTO students (name, email, discord) VALUES (?, ?, ?)", student
   )
 end

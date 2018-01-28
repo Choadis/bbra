@@ -13,12 +13,12 @@ db = SQLite3::Database.new "./db/dev.db"
 
 Cuba.define do
   on root do
-    game_array = db.execute("SELECT * FROM games")
-    games = game_array.map do |id, name, producer, platform|
-      { :id => id, :name => name, :producer => producer, :platform => platform }
+    student_array = db.execute("SELECT * FROM students")
+    students = student_array.map do |id, name, email, discord|
+      { :id => id, :name => name, :email => email, :discord => discord }
     end
 #    require 'pry'; binding.pry
-    res.write view("index", games: games)
+    res.write view("index", students: students)
   end
 
   on "new" do
@@ -28,18 +28,18 @@ Cuba.define do
   on post do
     on "create" do
       name = req.params["name"]
-      producer = req.params["producer"]
-      platform = req.params["platform"]
+      email = req.params["email"]
+      discord = req.params["discord"]
       db.execute(
-        "INSERT INTO games (name, producer, platform) VALUES (?, ?, ?)",
-        name, producer, platform
+        "INSERT INTO students (name, email, discord) VALUES (?, ?, ?)",
+        name, email, discord
       )
       res.redirect "/"
     end
 
     on "delete/:id" do |id|
       db.execute(
-        "DELETE FROM games WHERE id=#{id}"
+        "DELETE FROM students WHERE id=#{id}"
       )
       res.redirect "/"
     end
