@@ -25,6 +25,9 @@ Cuba.define do
   end
   on "edit/:id" do |id|
     res.write view("edit")
+    db.execute(
+      "DELETE FROM students WHERE id=#{id}"
+    )
   end
 
   on post do
