@@ -23,6 +23,9 @@ Cuba.define do
   on "new" do
     res.write view("new")
   end
+  on "edit/:id" do |id|
+    res.write view("edit")
+  end
 
   on post do
     on "create" do
