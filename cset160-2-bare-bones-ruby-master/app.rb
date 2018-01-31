@@ -19,16 +19,19 @@ Cuba.define do
     end
     res.write view("index", games: games)
   end
-
   on "new" do
     res.write view("new")
   end
+
+  on get, "/edit/:id" do |id|
+    game = game_array(:id)
+    res.write view("edit", game: game)
+  end
+
   on "edit/:id" do |id|
     res.write view("edit")
-    db.execute(
-      "DELETE FROM students WHERE id=#{id}"
-    )
   end
+
 
   on post do
     on "create" do
@@ -42,6 +45,21 @@ Cuba.define do
       res.redirect "/"
     end
 
+    on post do
+      on "edit" do
+        name = req.params["name"]
+        producer = req.params["producer"]
+        platform = req.params["platform"]
+        db.execute(
+          "DELETE FROM students WHERE id=#{id}"
+        )
+        db.execute(
+          "INSERT INTO students (name, producer, platform) VALUES (?, ?, ?) WHERE id=#{id}",
+          name, producer, platform,
+        )
+        res.redirect "/"
+      end
+end
     on "delete/:id" do |id|
       db.execute(
         "DELETE FROM students WHERE id=#{id}"
