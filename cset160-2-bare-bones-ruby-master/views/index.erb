@@ -8,9 +8,9 @@
       <form action="/delete/<%= game[:id] %>" method="post" class="delete">
         <input type="submit" value="delete">
       </form>
-      <form action="/new/<%= game[:id] %>" method="post" class="delete">
+      <a href="/edit" method="post" class="delete">
         <input type="submit" value="edit">
-      </form>
+      </a>
     </li>
   <% end %>
 </ul>
