@@ -1,9 +1,9 @@
 <h1>My Games</h1>
 <ul>
-  <% games.each do |game| %>
+  <% games.each do |games| %>
     <li>
-      <a href="mailto:<%= game[:producer] %>"><%= game[:name] %></a>
-      (<%= game[:platform] %>)
+      <a href="mailto:<%= game[:producer] %>"<%= games.name %></a>
+      (<%= game.platform %>)
 
       <form action="/delete/<%= game[:id] %>" method="post" class="delete">
         <input type="submit" value="delete">

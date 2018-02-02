@@ -1,21 +1,21 @@
 <h1>Edit game</h1>
-<form action="/create" method="post">
+<form action="/update/<%= game[:id] %>" method="post">
   <p>
     <label>
       Name
-      <input type="text" name="name">
+      <input type="text" name="name" value="<%= game[:name] %>">
     </label>
   </p>
   <p>
     <label>
       Producer
-      <input type="text" name="producer">
+      <input type="text" name="producer" value="<%= game[:producer] %>">
     </label>
   </p>
   <p>
     <label>
       Platform
-      <input type="text" name="platform">
+      <input type="text" name="platform" value="<%= game[:platform] %>">
     </label>
   </p>
   <p>
